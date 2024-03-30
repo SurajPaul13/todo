@@ -17,7 +17,7 @@ const TodoItem = ({ todoItem, onDelete, onToggle }) => {
         className='checkbox-input'
       />
       <div className="label-container d-flex flex-row justify-content-between align-items-center">
-        <label htmlFor={id} className={isChecked ? 'checked' : ''}>
+        <label htmlFor={id} className={`checkbox-label ${isChecked ? 'checked' : ''}`}>
           {todoItem.text}
         </label>
         <div className="delete-icon-container">

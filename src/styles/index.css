@@ -26,6 +26,27 @@
     font-weight: 500;
 }
 
+.todo-user-input {
+    background-color: white;
+    width: 100%;
+    border: 1px solid #e4e7eb;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 15px;
+}
+
+.button {
+    color: white;
+    background-color: #4c63b6;
+    font-family: "Roboto";
+    font-size: 18px;
+    border-width: 0;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 5px 20px 5px 20px;
+}
+
 .todo-items-heading {
     font-family: "Roboto";
     font-size: 32px;
@@ -47,47 +68,23 @@
     margin-top: 15px;
 }
 
-.todo-user-input {
-    background-color: white;
-    width: 100%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #e4e7eb;
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 15px;
-}
-
-.button {
-    color: white;
-    background-color: #4c63b6;
-    font-family: "Roboto";
-    font-size: 18px;
-    border-width: 0;
-    border-radius: 4px;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    padding: 5px 20px 5px 20px;
-}
-
-.label-container {
-    background-color: #e6f6ff;
-    width: 100%;
-    border-style: solid;
-    border-width: 5px;
-    border-color: #096f92;
-    border-right: none;
-    border-top: none;
-    border-bottom: none;
-    border-radius: 4px;
-    padding-left: 10px;
-}
-
 .checkbox-input {
     width: 20px;
     height: 20px;
     margin-top: 12px;
     margin-right: 12px;
+    cursor: pointer;
+}
+
+.label-container {
+    background-color: #e6f6ff;
+    width: 100%;
+    border: 5px solid #096f92;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 4px;
+    padding-left: 10px;
 }
 
 .checkbox-label {
@@ -96,11 +93,13 @@
     font-weight: 400;
     width: 82%;
     margin: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-top: 10px 20px 10px 20px;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.checked {
+    text-decoration: line-through;
 }
 
 .delete-icon-container {
@@ -110,8 +109,5 @@
 
 .delete-icon {
     padding: 15px;
-}
-
-.checked {
-    text-decoration: line-through;
+    cursor: pointer;
 }
