@@ -1,11 +1,12 @@
 import React from 'react';
-import TodoItem from './TodoItem'
+import TodoItem from './TodoItem';
 
-const TodoList = ({todos, onToggle, onDelete}) => {
-
+const TodoList = ({ todoList, onDelete, onFinishEditing }) => {
   return (
     <ul className="todo-items-container">
-      {todos.map(todo => <TodoItem key={todo.id} todoItem={todo} onToggle={onToggle} onDelete={onDelete}/>)}
+      {todoList.map((each) => (
+        <TodoItem key={each.id} todoItem={each} />
+      ))}
     </ul>
   );
 };

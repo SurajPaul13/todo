@@ -8,26 +8,38 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const todoSlice = createSlice({
   name: 'todo',
-  initialState:{todoItems:[]},
+  initialState: { todoItems: [] },
   reducers: {
-    addTodo: (state, action) => {
-      const item = action.payload;
+    addTodo: (state, actions) => {
+      const item = actions.payload;
       state.todoItems = [...state.todoItems, item];
     },
-    removeTodo: (state, action) => {
-      const removeItem = action.payload;
-      state.todoItems = state.todoItems.filter(
-        (item) => item.id !== removeItem
+    removeTodo: (state, actions) => {
+      const id = actions.payload;
+      state.todoItems = state.todoItems.filter((item) => item.id !== id);
+    },
+    toggleSelect: (state, actions) => {
+      const id = actions.payload;
+      state.todoItems = state.todoItems.map((item) =>
+        item.id !== id ? item : { ...item, isSelected: !item.isSelected }
       );
     },
-    toggleTodo: (state, action) => {
-      const id = action.payload;
+    markAsDone: (state) => {
+      state.todoItems = state.todoItems.filter(
+        (eachTodo) => eachTodo.isSelected !== true
+      );
+    },
+    updateTodo: (state, actions) => {
+      const { id, editedTask, editedDescription } = actions.payload;
       state.todoItems = state.todoItems.map((item) =>
-        item.id !== id ? item : { ...item, isChecked: !item.isChecked }
+        item.id !== id
+          ? item
+          : { ...item, taskName: editedTask, description: editedDescription }
       );
     },
   },
 });
 
-export const { addTodo, removeTodo, toggleTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, toggleSelect, markAsDone, updateTodo } =
+  todoSlice.actions;
 export const todoReducer = todoSlice.reducer;

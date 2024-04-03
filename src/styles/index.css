@@ -3,12 +3,13 @@
 .todos-bg-container {
     background-color: #f9fbfe;
     height: 100vh;
+    padding: 20px;
 }
 
 .todos-heading {
     text-align: center;
     font-family: "Roboto";
-    font-size: 46px;
+    font-size: 36px;
     font-weight: 500;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -16,14 +17,18 @@
 
 .create-task-heading {
     font-family: "Roboto";
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
 }
 
 .create-task-heading-subpart {
     font-family: "Roboto";
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 500;
+}
+
+.form-heading{
+    margin-bottom: 5px;
 }
 
 .todo-user-input {
@@ -31,9 +36,26 @@
     width: 100%;
     border: 1px solid #e4e7eb;
     border-radius: 10px;
-    margin-top: 10px;
-    padding: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
+
+.calender{
+    border-radius: 5px;
+    padding: 3px 8px 3px 8px;
+    margin-bottom: 20px;
+}
+
+.priority-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.select-container{
+    margin-left: 20px;
+}
+
 
 .button {
     color: white;
@@ -47,9 +69,18 @@
     padding: 5px 20px 5px 20px;
 }
 
+.save{
+    background-color: cornflowerblue;
+}
+
+.cancel{
+    background-color: crimson;
+    margin-left: 20px;
+}
+
 .todo-items-heading {
     font-family: "Roboto";
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
 }
 
@@ -59,13 +90,28 @@
     font-weight: 500;
 }
 
+.mark-completed{
+    font-family: 'Roboto';
+    cursor: pointer;
+}
+
+.edit-icon{
+    height: 30px;
+}
+
 .todo-items-container {
     margin: 0;
     padding: 0;
+    list-style-type: none;
 }
 
 .todo-item-container {
     margin-top: 15px;
+}
+
+.edit-form{
+    width: 100%;
+    border: solid;
 }
 
 .checkbox-input {
@@ -77,7 +123,6 @@
 }
 
 .label-container {
-    background-color: #e6f6ff;
     width: 100%;
     border: 5px solid #096f92;
     border-right: none;
@@ -85,17 +130,34 @@
     border-bottom: none;
     border-radius: 4px;
     padding-left: 10px;
+    overflow: hidden;
 }
 
 .checkbox-label {
     font-family: "Roboto";
-    font-size: 16px;
-    font-weight: 400;
     width: 82%;
     margin: 0;
-    padding-top: 10px 20px 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+}
+.task-name-container{
+    width: 100%;
+}
+
+.task-name{
+    font-weight: bold;
+    font-size: 20px;
+    overflow: hidden;
+    margin-bottom: 2px;
+}
+
+.todo-date{
+    min-width: 90px;
+    font-size: 12px;
+}
+
+.due-date{
+    font-weight: bold;
 }
 
 .checked {
@@ -103,11 +165,30 @@
 }
 
 .delete-icon-container {
-    text-align: right;
-    width: 18%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-icon{
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.display-priority-mark{
+    height: 45px;
+    margin: 10px
+}
+.hide-priority-mark{
+    display: none;
+}
+
+.display-image{
+    display: none;
 }
 
 .delete-icon {
-    padding: 15px;
+    padding-right: 15px;
     cursor: pointer;
 }
