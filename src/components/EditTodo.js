@@ -28,8 +28,8 @@ const EditTodo = ({ saveEdit, id, taskName, description }) => {
     setEditedDescription(event.target.value);
 
   return (
-    <div className='d-flex flex-column'>
-      <form className="edit-form" onSubmit={handleSave}>
+    <div>
+      <form onSubmit={handleSave}>
         <input
           type="text"
           id="editTask"

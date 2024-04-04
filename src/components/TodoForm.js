@@ -26,8 +26,6 @@ const TodoForm = () => {
         id: Date.now(),
         taskName,
         description,
-        editedTask:taskName,
-        editedDescription:description,
         date,
         priority,
         isChecked: false,

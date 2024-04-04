@@ -1,21 +1,32 @@
 import React, { useState } from 'react';
-import EditiTodo from './EditTodo.js'
+import { Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import EditiTodo from './EditTodo.js';
 import { toggleSelect, removeTodo } from '../slices/todoSlice';
 import { useDispatch } from 'react-redux';
 
-const TodoItem = ({ todoItem }) => {
+const TodoItem = ({ todoItem, toggleView }) => {
   const { id, taskName, description, date, priority, isChecked, isSelected } =
     todoItem;
 
   const [isEditing, setIsEditing] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(false);
+  }
+  const handleShow = () => {
+    setShow(true);
+  };
 
   const dispatch = useDispatch();
 
   const selectCheckbox = () => {
     if (priority !== 'High') {
       dispatch(toggleSelect(id));
-    }else{
-
+      
+    } else {
+      console.log('onSelect')
     }
   };
 
@@ -23,7 +34,7 @@ const TodoItem = ({ todoItem }) => {
     setIsEditing(true);
   };
 
-  const saveEdit = () => setIsEditing(false)
+  const saveEdit = () => setIsEditing(false);
 
   const onDelete = () => dispatch(removeTodo(id));
 
@@ -77,10 +88,30 @@ const TodoItem = ({ todoItem }) => {
               alt="edit icon"
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAE+0lEQVR4nO2afVAUdRzGv1aaTs34Xl2KQAqGlemIqYg2cQKSYG9DjhNZf2iOTS+aZTBOmTURjvJOIFiCjbzDOYGJyNsdesFxxujweggiOJYSI5ZxHNytT7M7uyfHi+JMgbu3n5nnj5u73b3P8/3t72ZulkhGRkZGRkZGRkbmvgbv7JnIfLYlidm9pY75csNxhK2ZTPYCdgc5M8E7/7q16xsIYYJ39CDM9xmSOghVujIh23v6ywuxvO5vwocLFpDUKK6o81PrGuo0unpjdUEZ83do7CB5ZlswGM9XYHlZacJHrgtJKpRp6zeqdY19mqpGCDn9ay26DiTeLmDnXjDeG7gCuBL8vUwImSf+lVCirR0kP6iET/eCWRdklbeWIPaVcEpb46vRNZj7S+trWtFj6kOf2YLquks4ra1Bx5Zdg+TNnuvx53I/XFZ6mjq3ubiRGFHr6s8NlO/tM0Og/Uonck/qka0qx9WNH1jluz0C0OzujYYlSi5tfkuvkhjRVNbduC1/0UbebGFQpK1Fen4FF6EEo0cAmtzXWOW5uCtx+bUXZpOYQMEqxTntz91CAf8YTTbyZZX1VnkhaZklqAx421aeL6BlmdfjJBZwfOkTKPVtMmrehVZXzRXQzRdgsTBQDyH/U64GkUnZiIlLhdY/yKaAVu/lLSQWcMJzJkrXNkDtDzY3y7dyJejOt6Cl/RqKztQMKx9xMJMLV8K6tzj55pc8jVf8V84hMU0evHz/Es5U/gZVoX6wvKocUUk5Vnkh30emoNFX2Xtt84JFJMbJo3/K/NClWgpV3sk7Tn5gMqPDvyIpyCNnOpBKuJ7hYi3hbvJsohOzNpNU5MHnerorMnLy7yofcTCzc3987mMkJXmkEnpSCGcjnRGb8OMd5DOM0YnZPiQ1eVMKoTmCYDhA0Ec6Im7IEjKMkYkqP5Li5C/w8kL0EU5ISIizyocfzOiIPZTlTfYgb+BTHz7p4uEfot6PTMraFBp7ZDpJedkbBiacmi8cIAcSA5Dl197zsrfbyfdIRj6ZpiDP5fyQ8iXeQPZUicsfJT0nlj0F+GUhcGolULgcyHMB0sfbiXzqyCLLR8iTx1DLvimaZtvtsm+S5UUA7HnyLDhK6v9Q3tCwj54ksYDCactQpgBSx9nf5FlQqshGtRugngWkjbOfyQvgzJw2rgA2px2B9AfsY/ICqJpnthbARusEZDxoJ/JFMxbbyAupeArIeoiTNyYP/08OK9+eQLNIrKBYsX+gfK/uadwon4+rBc5ojR8/tLgU5FkqdoRc+T3tVTBn3dBR4ormvLkwHOuXXEcYYiZIU54l743DlmSPIlTF+NiK25TgBEPcROnJt4QFTk5eUYyoRfnYtyQZ2iiv4UtQOcMQPwktUdR4KYIUJAWavwv0OuSuQehz6fj22dQ7lnBJ5dBzLWtmPo7Q/f2X9b1y7M14MysvhC2hIubFW20qh5t/HFPoO1QzwjpV08T5cNJIOP/1+vkn3tveqtr0eVfpx1urdF8EflK7J3DCiA6WkZGxFx4moqlE3M+fMxGxm+JiIvIgolVEtJqIvIhISUS+fPz5CK+V/GdW88d48Odw48+p4K/BXmvMeZSI5hLRMiLy6SczWvHhr81+h0dGW/55Ilo3BtLDhf0uo/qg9EJ7L4D4ZTeWt4D3WN4CNATDbYIrBmyCbIbbBIX3hU2QPfZ/3QT/BVNo+1e5QbHWAAAAAElFTkSuQmCC"
             />
-            <i
-              className="far fa-trash-alt delete-icon"
-              onClick={() => onDelete(id)}
-            ></i>
+            <button className="del-btn">
+              <i
+                className="far fa-trash-alt delete-icon"
+                onClick={() =>
+                  priority === 'High' ? handleShow() : onDelete(id)
+                }
+              ></i>
+            </button>
+            <Modal show={show} onHide={handleClose} animation={false}>
+              <Modal.Header>
+                <Modal.Title>Are you sure ?</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Click confirm to delete the item !
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button variant="danger" onClick={() => onDelete(id)}>
+                  Confirm
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </div>
       </>
@@ -88,8 +119,17 @@ const TodoItem = ({ todoItem }) => {
   };
 
   return (
-    <li className="todo-item-container d-flex flex-row">
-      {isEditing ? <EditiTodo id={id} saveEdit={saveEdit} taskName={taskName} description={description} /> : <FinalTaskComponent />}
+    <li className={`todo-item-container d-flex flex-row ${toggleView ? 'col-6':''}`}>
+      {isEditing ? (
+        <EditiTodo
+          id={id}
+          saveEdit={saveEdit}
+          taskName={taskName}
+          description={description}
+        />
+      ) : (
+        <FinalTaskComponent />
+      )}
     </li>
   );
 };

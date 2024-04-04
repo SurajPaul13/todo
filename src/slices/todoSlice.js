@@ -8,7 +8,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const todoSlice = createSlice({
   name: 'todo',
-  initialState: { todoItems: [] },
+  initialState: { todoItems: [], selectedCount: 0 },
   reducers: {
     addTodo: (state, actions) => {
       const item = actions.payload;
