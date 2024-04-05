@@ -96,6 +96,9 @@
     margin-right: 10px;
     font-size: 15px;
     font-weight: bold;
+    background-color: transparent;
+    border: none;
+    outline: none !important;
 }
 
 .todo-items-container {
@@ -172,9 +175,10 @@
 }
 
 .del-btn{
-    border: none;
     background-color: transparent;
     color: #111111;
+    border: none;
+    outline: none;
 }
 
 .display-priority-mark{
@@ -192,4 +196,76 @@
 .delete-icon {
     padding-right: 15px;
     cursor: pointer;
+}
+
+.empty-task-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.empty-task-container h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.empty-task-container p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.button:disabled {
+  background-color: #ccc; 
+  color: #666;
+  cursor: not-allowed;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-main {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  width: 80%;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-modal-button {
+  background-color: red;
+}
+
+.add-icon{
+  font-size: 25px;
+  color: #fff;
+  outline: none !important;
+  border: none;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
 }

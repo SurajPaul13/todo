@@ -1,22 +1,15 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  setHeading,
-  setDescription,
-  setDate,
-  setPriority,
-  resetState,
-} from '../slices/formSlice';
-import {
-  addTodo,
-} from '../slices/todoSlice';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../slices/todoSlice';
+import '@fortawesome/fontawesome-free/css/all.css';
 
-const TodoForm = () => {
+const TodoForm = ({ handleCloseModal }) => {
   const dispatch = useDispatch();
 
-  const { taskName, description, date, priority} = useSelector(
-    (state) => state.form
-  );
+  const [taskName, setTask] = useState('');
+  const [description, setDescription] = useState('');
+  const [date, setDate] = useState('');
+  const [priority, setPriority] = useState('Low');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,39 +22,61 @@ const TodoForm = () => {
         date,
         priority,
         isChecked: false,
-        isSelected:false
+        isSelected: false,
       };
-  
+
       dispatch(addTodo(todoItem));
-      dispatch(resetState());
+      setTask('');
+      setDescription('');
+      setDate('');
+      setPriority('Low');
+      handleCloseModal();
     }
   };
 
-  const handleHeading = (event) => {
-    dispatch(setHeading(event.target.value));
+  const onClickClose = () => handleCloseModal();
+
+  const handleTask = (event) => {
+    setTask(event.target.value);
   };
 
   const handleDescription = (event) => {
-    dispatch(setDescription(event.target.value));
+    setDescription(event.target.value);
   };
 
   const handleDate = (event) => {
-    dispatch(setDate(event.target.value));
+    setDate(event.target.value);
+  };
+
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let day = today.getDate();
+
+    if (month < 10) {
+      month = '0' + month;
+    }
+    if (day < 10) {
+      day = '0' + day;
+    }
+
+    return `${year}-${month}-${day}`;
   };
 
   const handlePriority = (event) => {
-    dispatch(setPriority(event.target.value));
+    setPriority(event.target.value);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="">
       <div>
         <h6 className="form-heading">Task Name</h6>
         <input
           type="text"
           className="todo-user-input"
           placeholder="What is the task?"
-          onChange={handleHeading}
+          onChange={handleTask}
           value={taskName}
         />
       </div>
@@ -77,7 +92,13 @@ const TodoForm = () => {
       </div>
       <div>
         <h6>Due Date</h6>
-        <input type="date" className="calender" value={date} onChange={handleDate} />
+        <input
+          type="date"
+          className="calender"
+          value={date}
+          onChange={handleDate}
+          min={getCurrentDate()}
+        />
       </div>
       <div className="priority-container">
         <h6 className="priority-heading">Priority</h6>
@@ -97,9 +118,24 @@ const TodoForm = () => {
           </option>
         </select>
       </div>
-      <button type="submit" className="button" id="addTodoButton">
-        Add
-      </button>
+      <div>
+        <button
+          type="submit"
+          className="button mr-5"
+          disabled={!taskName || !description || !date}
+          id="addTodoButton"
+        >
+          Add
+        </button>
+        <button
+          onClick={onClickClose}
+          type="button"
+          className="button close-modal-button"
+          id="closeButton"
+        >
+          Close
+        </button>
+      </div>
     </form>
   );
 };
