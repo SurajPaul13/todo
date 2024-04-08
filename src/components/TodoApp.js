@@ -19,8 +19,8 @@ const TodoApp = () => {
   const handleCloseModal = () => setShowModal(false);
 
   const showHideClassName = showModal
-    ? 'modal display-block'
-    : 'modal display-none';
+    ? 'form-modal display-block'
+    : 'form-modal display-none';
 
   const handleView = () => {
     setView(!listView);
@@ -63,7 +63,7 @@ const TodoApp = () => {
         <h1 className="todo-items-heading">
           My <span className="todo-items-heading-subpart">Tasks</span>
         </h1>
-        <div className="d-flex">
+        {todoList.length !== 0 ? <div className="d-flex">
           <button
             onClick={handleMarkAsDone}
             title="Mark Complete"
@@ -82,7 +82,7 @@ const TodoApp = () => {
               <i className="fa-solid fa-table-cells-large"></i>
             )}
           </button>
-        </div>
+        </div> : null}
       </div>
       {<FormModal />}
       {todoList.length !== 0 ? (

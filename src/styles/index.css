@@ -1,207 +1,194 @@
-@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
 
 .todos-bg-container {
-    background-color: #f9fbfe;
-    height: 100vh;
-    padding: 20px;
+  background-color: #e4e7eb;
+  height: 100vh;
+  padding: 20px;
 }
 
 .todos-heading {
-    text-align: center;
-    font-family: "Roboto";
-    font-size: 36px;
-    font-weight: 500;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Roboto';
+  font-size: 36px;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .create-task-heading {
-    font-family: "Roboto";
-    font-size: 28px;
-    font-weight: 700;
+  font-family: 'Roboto';
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .create-task-heading-subpart {
-    font-family: "Roboto";
-    font-size: 28px;
-    font-weight: 500;
+  font-family: 'Roboto';
+  font-size: 28px;
+  font-weight: 500;
 }
 
-.form-heading{
-    margin-bottom: 5px;
+.form-heading {
+  margin-bottom: 5px;
 }
 
 .todo-user-input {
-    background-color: white;
-    width: 100%;
-    border: 1px solid #e4e7eb;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
+  background-color: white;
+  width: 100%;
+  border: 1px solid #e4e7eb;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
-.calender{
-    border-radius: 5px;
-    padding: 3px 8px 3px 8px;
-    margin-bottom: 20px;
+.calender {
+  border-radius: 5px;
+  padding: 3px 8px 3px 8px;
+  margin-bottom: 20px;
 }
 
-.priority-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.priority-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.select-container{
-    margin-left: 20px;
+.select-container {
+  margin-left: 20px;
 }
-
 
 .button {
-    color: white;
-    background-color: #4c63b6;
-    font-family: "Roboto";
-    font-size: 18px;
-    border-width: 0;
-    border-radius: 4px;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    padding: 5px 20px 5px 20px;
+  color: white;
+  background-color: #4c63b6;
+  font-family: 'Roboto';
+  font-size: 18px;
+  border-width: 0;
+  border-radius: 4px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 5px 20px 5px 20px;
 }
 
-.save{
-    background-color: cornflowerblue;
+.save {
+  background-color: cornflowerblue;
 }
 
-.cancel{
-    background-color: crimson;
-    margin-left: 20px;
+.cancel {
+  background-color: crimson;
+  margin-left: 20px;
 }
 
 .todo-items-heading {
-    font-family: "Roboto";
-    font-size: 28px;
-    font-weight: 700;
+  font-family: 'Roboto';
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .todo-items-heading-subpart {
-    font-family: "Roboto";
-    font-size: 32px;
-    font-weight: 500;
+  font-family: 'Roboto';
+  font-size: 32px;
+  font-weight: 500;
 }
 
-.mark-completed{
-    font-family: 'Roboto';
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: transparent;
-    border: none;
-    outline: none !important;
+.mark-completed {
+  font-family: 'Roboto';
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  outline: none !important;
 }
 
 .todo-items-container {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  flex-wrap: wrap;
 }
 
 .todo-item-container {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .checkbox-input {
-    width: 20px;
-    height: 20px;
-    margin-top: 12px;
-    margin-right: 12px;
-    cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin-top: 12px;
+  margin-right: 12px;
+  cursor: pointer;
 }
 
 .label-container {
-    width: 100%;
-    border: 5px solid #096f92;
-    border-right: none;
-    border-top: none;
-    border-bottom: none;
-    border-radius: 4px;
-    padding-left: 10px;
-    overflow: hidden;
+  width: 100%;
+  border: 5px solid #096f92;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  border-radius: 4px;
+  padding-left: 10px;
+  overflow: hidden;
 }
 
 .checkbox-label {
-    font-family: "Roboto";
-    width: 82%;
-    margin: 0;
-    border-radius: 5px;
-    cursor: pointer;
+  font-family: 'Roboto';
+  width: 82%;
+  margin: 0;
+  border-radius: 5px;
+  cursor: pointer;
 }
-.task-name-container{
-    width: 100%;
-}
-
-.task-name{
-    font-weight: bold;
-    font-size: 20px;
-    overflow: hidden;
-    margin-bottom: 2px;
+.task-name-container {
+  width: 100%;
 }
 
-.todo-date{
-    min-width: 90px;
-    font-size: 12px;
+.task-name {
+  font-weight: bold;
+  font-size: 20px;
+  overflow: hidden;
+  margin-bottom: 2px;
 }
 
-.due-date{
-    font-weight: bold;
+.todo-date {
+  min-width: 90px;
+  font-size: 12px;
+}
+
+.due-date {
+  font-weight: bold;
 }
 
 .checked {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
-.delete-icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.priority-icon{
+  font-size: 40px;
+  color: red;
 }
 
-.edit-icon{
-    height: 30px;
-    margin-right: 10px;
-    cursor: pointer;
+.edit-icon {
+  height: 30px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
-.del-btn{
-    background-color: transparent;
-    color: #111111;
-    border: none;
-    outline: none;
-}
-
-.display-priority-mark{
-    height: 45px;
-    margin: 10px
-}
-.hide-priority-mark{
-    display: none;
-}
-
-.display-image{
-    display: none;
+.del-btn {
+  background-color: transparent;
+  color: #111111;
+  border: none;
+  outline: none;
+  width: 30px;
 }
 
 .delete-icon {
-    padding-right: 15px;
-    cursor: pointer;
+  padding-right: 15px;
+  cursor: pointer;
 }
 
 .empty-task-container {
   text-align: center;
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color: beige;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
@@ -218,12 +205,12 @@
 }
 
 .button:disabled {
-  background-color: #ccc; 
+  background-color: #ccc;
   color: #666;
   cursor: not-allowed;
 }
 
-.modal {
+.form-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -237,8 +224,27 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   width: 80%;
+}
+
+.confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 50px;
+}
+
+.confirmation-card{
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    height: 200px;
 }
 
 .display-none {
@@ -255,7 +261,12 @@
   background-color: red;
 }
 
-.add-icon{
+.confirm-btn{
+    background-color: red;
+
+}
+
+.add-icon {
   font-size: 25px;
   color: #fff;
   outline: none !important;
