@@ -2,7 +2,7 @@
 
 .todos-bg-container {
   background-color: #e4e7eb;
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px;
 }
 
@@ -13,6 +13,49 @@
   font-weight: 500;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+.todo-items-heading {
+  font-family: 'Roboto';
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.todo-items-heading-subpart {
+  font-family: 'Roboto';
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.mark-completed {
+  font-family: 'Roboto';
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  outline: none !important;
+}
+
+.display-form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-main {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 80%;
 }
 
 .create-task-heading {
@@ -64,8 +107,43 @@
   border-width: 0;
   border-radius: 4px;
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   padding: 5px 20px 5px 20px;
+}
+
+.button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.close-modal-button {
+  background-color: red;
+}
+
+.todo-items-container {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  flex-wrap: wrap;
+  height: max-content;
+}
+
+.todo-item-container {
+  margin-top: 15px;
+}
+
+.edit-todo-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .save {
@@ -75,40 +153,6 @@
 .cancel {
   background-color: crimson;
   margin-left: 20px;
-}
-
-.todo-items-heading {
-  font-family: 'Roboto';
-  font-size: 28px;
-  font-weight: 700;
-}
-
-.todo-items-heading-subpart {
-  font-family: 'Roboto';
-  font-size: 32px;
-  font-weight: 500;
-}
-
-.mark-completed {
-  font-family: 'Roboto';
-  cursor: pointer;
-  margin-right: 10px;
-  font-size: 15px;
-  font-weight: bold;
-  background-color: transparent;
-  border: none;
-  outline: none !important;
-}
-
-.todo-items-container {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  flex-wrap: wrap;
-}
-
-.todo-item-container {
-  margin-top: 15px;
 }
 
 .checkbox-input {
@@ -127,18 +171,18 @@
   border-bottom: none;
   border-radius: 4px;
   padding-left: 10px;
-  overflow: hidden;
 }
 
 .checkbox-label {
   font-family: 'Roboto';
-  width: 82%;
   margin: 0;
   border-radius: 5px;
   cursor: pointer;
+  width: inherit;
 }
-.task-name-container {
-  width: 100%;
+
+.checked {
+  text-decoration: line-through;
 }
 
 .task-name {
@@ -157,19 +201,15 @@
   font-weight: bold;
 }
 
-.checked {
-  text-decoration: line-through;
+.description {
+  flex-wrap: wrap;
+  overflow: hidden;
+  word-break: break-all;
 }
 
-.priority-icon{
+.priority-icon {
   font-size: 40px;
   color: red;
-}
-
-.edit-icon {
-  height: 30px;
-  margin-right: 10px;
-  cursor: pointer;
 }
 
 .del-btn {
@@ -178,54 +218,6 @@
   border: none;
   outline: none;
   width: 30px;
-}
-
-.delete-icon {
-  padding-right: 15px;
-  cursor: pointer;
-}
-
-.empty-task-container {
-  text-align: center;
-  padding: 20px;
-  background-color: beige;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-}
-
-.empty-task-container h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.empty-task-container p {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-.button:disabled {
-  background-color: #ccc;
-  color: #666;
-  cursor: not-allowed;
-}
-
-.form-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-}
-
-.modal-main {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  width: 80%;
 }
 
 .confirmation-modal {
@@ -239,31 +231,54 @@
   padding: 50px;
 }
 
-.confirmation-card{
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    width: 400px;
-    height: 200px;
+.confirmation-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  height: 200px;
 }
 
-.display-none {
-  display: none;
+.empty-task-container {
+  text-align: center;
+  padding: 20px;
+  background-color: beige;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.display-block {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.empty-task-container h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
-.close-modal-button {
-  background-color: red;
+.empty-task-container p {
+  font-size: 16px;
+  margin-bottom: 5px;
 }
 
-.confirm-btn{
-    background-color: red;
+.meme-generator-container{
+  text-align: center;
+  padding: 20px;
+  background-color: beige;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
 
+.meme-generator-container h3{
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.meme-card{
+  border-radius: 10px;
+}
+
+.meme-image{
+  height: 30vh;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .add-icon {

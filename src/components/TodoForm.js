@@ -6,15 +6,20 @@ import '@fortawesome/fontawesome-free/css/all.css';
 const TodoForm = ({ handleCloseModal }) => {
   const dispatch = useDispatch();
 
-  const [taskName, setTask] = useState('');
-  const [description, setDescription] = useState('');
-  const [date, setDate] = useState('');
-  const [priority, setPriority] = useState('Low');
+  const initialFormData = {
+    taskName: '',
+    description: '',
+    date: '',
+    priority: 'Low',
+  };
+  const [formData, setFormData] = useState(initialFormData);
 
-  const handleSubmit = (event) => {
+  const { taskName, description, date, priority } = formData;
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (taskName.trim() !== '' && description.trim() !== '' && date !== '') {
+    if (taskName.trim() && description.trim() && date) {
       const todoItem = {
         id: Date.now(),
         taskName,
@@ -26,26 +31,9 @@ const TodoForm = ({ handleCloseModal }) => {
       };
 
       dispatch(addTodo(todoItem));
-      setTask('');
-      setDescription('');
-      setDate('');
-      setPriority('Low');
+      setFormData(initialFormData);
       handleCloseModal();
     }
-  };
-
-  const onClickClose = () => handleCloseModal();
-
-  const handleTask = (event) => {
-    setTask(event.target.value);
-  };
-
-  const handleDescription = (event) => {
-    setDescription(event.target.value);
-  };
-
-  const handleDate = (event) => {
-    setDate(event.target.value);
   };
 
   const getCurrentDate = () => {
@@ -64,12 +52,26 @@ const TodoForm = ({ handleCloseModal }) => {
     return `${year}-${month}-${day}`;
   };
 
+  const onClickClose = () => handleCloseModal();
+
+  const handleTask = (event) => {
+    setFormData({ ...formData, taskName: event.target.value });
+  };
+
+  const handleDescription = (event) => {
+    setFormData({ ...formData, description: event.target.value });
+  };
+
+  const handleDate = (event) => {
+    setFormData({ ...formData, date: event.target.value });
+  };
+
   const handlePriority = (event) => {
-    setPriority(event.target.value);
+    setFormData({ ...formData, priority: event.target.value });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="">
+    <form onSubmit={handleSubmit}>
       <div>
         <h6 className="form-heading">Task Name</h6>
         <input
@@ -101,7 +103,7 @@ const TodoForm = ({ handleCloseModal }) => {
         />
       </div>
       <div className="priority-container">
-        <h6 className="priority-heading">Priority</h6>
+        <h6>Priority</h6>
         <select
           className="select-container"
           value={priority}

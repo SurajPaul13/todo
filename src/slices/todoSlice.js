@@ -30,11 +30,11 @@ const todoSlice = createSlice({
       );
     },
     updateTodo: (state, actions) => {
-      const { id, editedTask, editedDescription } = actions.payload;
+      const { id, editedTaskName, editedDescription } = actions.payload;
       state.todoItems = state.todoItems.map((item) =>
         item.id !== id
           ? item
-          : { ...item, taskName: editedTask, description: editedDescription }
+          : { ...item, taskName: editedTaskName, description: editedDescription }
       );
     },
   },

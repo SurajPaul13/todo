@@ -4,8 +4,15 @@ import { toggleSelect, removeTodo } from '../slices/todoSlice';
 import { useDispatch } from 'react-redux';
 
 const TodoItem = ({ todoItem, toggleView }) => {
-  const { id, taskName, description, date, priority, isChecked, isSelected } =
-    todoItem;
+  const {
+    id,
+    taskName,
+    description,
+    date,
+    priority,
+    isChecked,
+    isSelected,
+  } = todoItem;
 
   const [isEditing, setIsEditing] = useState(false);
   const [show, setShow] = useState(false);
@@ -45,7 +52,23 @@ const TodoItem = ({ todoItem, toggleView }) => {
 
   const bgLabelColor = priorityColors[priority];
 
+  const DisplayEditTodo = () => {
+    return (
+      <div className={`${isEditing ? 'edit-todo-modal' : 'd-none'}`}>
+        <div className="modal-main">
+          <EditiTodo
+            id={id}
+            saveEdit={saveEdit}
+            taskName={taskName}
+            description={description}
+          />
+        </div>
+      </div>
+    );
+  };
+
   const FinalTaskComponent = () => {
+    
     return (
       <>
         <input
@@ -63,15 +86,17 @@ const TodoItem = ({ todoItem, toggleView }) => {
             htmlFor={id}
             className={`checkbox-label ${isChecked ? 'checked' : ''}`}
           >
-            <div className="task-name-container d-flex flex-column justify-content-end align-items-start">
+            <div className=" d-flex flex-column justify-content-end align-items-start">
               <p className="task-name">{taskName}</p>
               <p className="todo-date">
                 Due on : {<span className="due-date">{date}</span>}
               </p>
             </div>
-            <p>{description}</p>
+            <p className="description">{description}</p>
           </label>
-          {priority === 'High' ? <i class="fa-regular fa-exclamation priority-icon"></i> : null}
+          {priority === 'High' ? (
+            <i className="fa-regular fa-exclamation priority-icon"></i>
+          ) : null}
           <div
             className={`d-flex ${
               toggleView ? 'flex-column' : ''
@@ -92,14 +117,25 @@ const TodoItem = ({ todoItem, toggleView }) => {
               ></i>
             </button>
             <div
-              className={`confirmation-modal ${show ? 'd-flex justify-content-center align-items-center' : 'd-none'}`}
+              className={`confirmation-modal ${
+                show
+                  ? 'd-flex justify-content-center align-items-center'
+                  : 'd-none'
+              }`}
             >
-              <div className='confirmation-card'>
+              <div className="confirmation-card">
                 <h3>Are you sure ?</h3>
                 <p>Click confirm to delete the item.</p>
-                <div className='d-flex justify-content-end'>
-                  <button className='button mr-2' onClick={handleClose}>Cancel</button>
-                  <button className='button close-modal-button' onClick={onDelete}>Confirm</button>
+                <div className="d-flex justify-content-end">
+                  <button className="button mr-2" onClick={handleClose}>
+                    Cancel
+                  </button>
+                  <button
+                    className="button close-modal-button"
+                    onClick={onDelete}
+                  >
+                    Confirm
+                  </button>
                 </div>
               </div>
             </div>
@@ -111,16 +147,8 @@ const TodoItem = ({ todoItem, toggleView }) => {
 
   return (
     <li className={`todo-item-container d-flex ${toggleView ? 'col-6' : ''}`}>
-      {isEditing ? (
-        <EditiTodo
-          id={id}
-          saveEdit={saveEdit}
-          taskName={taskName}
-          description={description}
-        />
-      ) : (
-        <FinalTaskComponent />
-      )}
+      {isEditing ? <DisplayEditTodo /> : null}
+      <FinalTaskComponent />
     </li>
   );
 };

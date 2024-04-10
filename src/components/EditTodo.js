@@ -6,35 +6,41 @@ const EditTodo = ({ saveEdit, id, taskName, description }) => {
 
   const dispatch = useDispatch();
 
-  const [editedTask, setEditedTask] = useState(taskName);
-  const [editedDescription, setEditedDescription] = useState(description);
-
-  const handleSave = () => {
-    dispatch(updateTodo({id, editedTask, editedDescription}));
-    saveEdit();
-  };
-
-  const handleCancel = () => {
-    setEditedTask(taskName);
-    setEditedDescription(description);
-    saveEdit();
+  const initialEditForm = {
+    editedTaskName: taskName,
+    editedDescription: description
   }
 
+  const [editFormData, setEditTodo] = useState(initialEditForm)
+
+
+  const {editedTaskName, editedDescription} = editFormData
+
   const handleEditTask = (event) => {
-    setEditedTask(event.target.value);
+    setEditTodo({...editFormData, editedTaskName: event.target.value})
   };
 
   const handleEditDescription = (event) =>
-    setEditedDescription(event.target.value);
+  setEditTodo({...editFormData, editedDescription: event.target.value})
+
+  const handleSave = () => {
+    dispatch(updateTodo({id, editedTaskName, editedDescription}));
+    saveEdit();
+  };
+
+
+  const handleCancel = () => {
+    setEditTodo(initialEditForm)
+    saveEdit();
+  }
 
   return (
-    <div>
       <form onSubmit={handleSave}>
         <input
           type="text"
           id="editTask"
           className="todo-user-input"
-          value={editedTask}
+          value={editedTaskName}
           onChange={handleEditTask}
         />
         <textarea
@@ -56,7 +62,6 @@ const EditTodo = ({ saveEdit, id, taskName, description }) => {
           </button>
         </div>
       </form>
-    </div>
   );
 };
 
