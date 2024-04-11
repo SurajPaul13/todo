@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import EditiTodo from './EditTodo.js';
 import { toggleSelect, removeTodo } from '../slices/todoSlice';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const TodoItem = ({ todoItem, toggleView }) => {
   const {
@@ -18,6 +19,8 @@ const TodoItem = ({ todoItem, toggleView }) => {
   const [show, setShow] = useState(false);
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const handleClose = () => {
     setShow(false);
@@ -89,7 +92,7 @@ const TodoItem = ({ todoItem, toggleView }) => {
             <div className=" d-flex flex-column justify-content-end align-items-start">
               <p className="task-name">{taskName}</p>
               <p className="todo-date">
-                Due on : {<span className="due-date">{date}</span>}
+                {t('due_on')}{' '}{<span className="due-date">{date}</span>}
               </p>
             </div>
             <p className="description">{description}</p>
@@ -124,17 +127,17 @@ const TodoItem = ({ todoItem, toggleView }) => {
               }`}
             >
               <div className="confirmation-card">
-                <h3>Are you sure ?</h3>
-                <p>Click confirm to delete the item.</p>
+                <h3>{t('are_you_sure')}</h3>
+                <p>{t('click_confirm')}</p>
                 <div className="d-flex justify-content-end">
                   <button className="button mr-2" onClick={handleClose}>
-                    Cancel
+                    {t('cancel')}
                   </button>
                   <button
                     className="button close-modal-button"
                     onClick={onDelete}
                   >
-                    Confirm
+                    {t('confirm')}
                   </button>
                 </div>
               </div>

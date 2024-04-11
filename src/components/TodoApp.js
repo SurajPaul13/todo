@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import { markAsDone } from '../slices/todoSlice';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import '../styles/index.css';
+import LanguageButtons from './LanguageButtons';
 
 const TodoApp = () => {
   const dispatch = useDispatch();
@@ -14,6 +16,8 @@ const TodoApp = () => {
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [memeImage, setMemeImage] = useState('');
+
+  const { t } = useTranslation();
 
   const fetchImageMeme = async () => {
     const options = {
@@ -55,26 +59,28 @@ const TodoApp = () => {
   const EmptyTodoList = () => (
     <>
       <div className="empty-task-container">
-        <h3>No Tasks</h3>
-        <p>Oops! Looks like there are no tasks added yet.</p>
+        <h3>{t('empty_tasks.line1')}</h3>
+        <p>{t('empty_tasks.line2')}</p>
         <p>
-          Start by clicking{' '}
-          <span>
-            <i className="fa-solid fa-plus"></i>
-          </span>{' '}
-          icon below.
+        {t('empty_tasks.line3')}
         </p>
-        <h3>Here is a meme for you!</h3>
+        <h3>{t('meme_heading')}</h3>
         <div className="meme-card">
           {isLoading ? (
-            <div class="spinner-border" role="status">
-              <span class="sr-only">Loading...</span>
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
             </div>
           ) : (
-            <img src={memeImage} className='meme-image' alt='meme'/>
+            <img src={memeImage} className="meme-image" alt="meme" />
           )}
         </div>
-        <button className='button' disabled={isLoading} onClick={fetchImageMeme}>Generate Meme</button>
+        <button
+          className="button"
+          disabled={isLoading}
+          onClick={fetchImageMeme}
+        >
+          {t('generate_meme')}
+        </button>
       </div>
     </>
   );
@@ -83,7 +89,7 @@ const TodoApp = () => {
     <div className={showHideClassName}>
       <div className="modal-main">
         <h1 className="create-task-heading">
-          Create <span className="create-task-heading-subpart">Task</span>
+          {t('create_task_heading')}
         </h1>
         <TodoForm handleCloseModal={handleCloseModal} />
       </div>
@@ -92,10 +98,11 @@ const TodoApp = () => {
 
   return (
     <div className="todos-bg-container">
-      <h1 className="todos-heading">Todos</h1>
+      <LanguageButtons/>
+      <h1 className="todos-heading">{t('app')}</h1>
       <div className="d-flex justify-content-between">
         <h1 className="todo-items-heading">
-          My <span className="todo-items-heading-subpart">Tasks</span>
+          {t('task_heading')}
         </h1>
         {todoList.length > 0 ? (
           <div className="d-flex">

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../slices/todoSlice';
+import { useTranslation } from 'react-i18next';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 const TodoForm = ({ handleCloseModal }) => {
   const dispatch = useDispatch();
+
+  const {t} = useTranslation()
 
   const initialFormData = {
     taskName: '',
@@ -73,7 +76,7 @@ const TodoForm = ({ handleCloseModal }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <h6 className="form-heading">Task Name</h6>
+        <h6 className="form-heading">{t('task_name')}</h6>
         <input
           type="text"
           className="todo-user-input"
@@ -83,7 +86,7 @@ const TodoForm = ({ handleCloseModal }) => {
         />
       </div>
       <div>
-        <h6>Description</h6>
+        <h6>{t('description')}</h6>
         <textarea
           type="text"
           className="todo-user-input"
@@ -93,7 +96,7 @@ const TodoForm = ({ handleCloseModal }) => {
         ></textarea>
       </div>
       <div>
-        <h6>Due Date</h6>
+        <h6>{t('due_date')}</h6>
         <input
           type="date"
           className="calender"
@@ -103,20 +106,20 @@ const TodoForm = ({ handleCloseModal }) => {
         />
       </div>
       <div className="priority-container">
-        <h6>Priority</h6>
+        <h6>{t('priority')}</h6>
         <select
           className="select-container"
           value={priority}
           onChange={handlePriority}
         >
           <option id="1" value="Low">
-            Low
+            {t('low')}
           </option>
           <option id="2" value="Medium">
-            Medium
+            {t('medium')}
           </option>
           <option id="3" value="High">
-            High
+            {t('high')}
           </option>
         </select>
       </div>
@@ -127,7 +130,7 @@ const TodoForm = ({ handleCloseModal }) => {
           disabled={!taskName || !description || !date}
           id="addTodoButton"
         >
-          Add
+          {t('add')}
         </button>
         <button
           onClick={onClickClose}
@@ -135,7 +138,7 @@ const TodoForm = ({ handleCloseModal }) => {
           className="button close-modal-button"
           id="closeButton"
         >
-          Close
+          {t('close')}
         </button>
       </div>
     </form>
