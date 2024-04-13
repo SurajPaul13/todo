@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const languages = [
@@ -10,28 +10,32 @@ const languages = [
 ];
 
 const LanguageButtons = () => {
+
+  const [selectedLanguage, setSelectedLanguage] = useState('')
+
   const { i18n } = useTranslation();
 
   const changeLanguage = (event) => {
-    const code = event.target.selectedOptions[0].id;
+    const code = event.target.value
     i18n.changeLanguage(code);
   };
 
   useEffect(() => {
+
+    const selectedLanguage = localStorage.getItem('i18nextLng')
+
+    setSelectedLanguage(selectedLanguage)
+
     document.body.dir = i18n.dir();
   }, [i18n, i18n.language]);
 
   return (
     <div className="buttons-container">
       <b className="mr-2">Language</b>
-      <select onChange={changeLanguage}>
+      <select onChange={changeLanguage} value={selectedLanguage}>
         {languages.map((lang) => (
           <option
-            id={lang.code}
-            value={lang.language}
-            className={`btn  ${
-              lang.code === i18n.language ? 'btn-primary' : ''
-            }`}
+            value={lang.code}
             key={lang.code}
           >
             {lang.language}

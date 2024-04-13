@@ -1,14 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-// code issue here - issue with fetching data from local storage
-
-// const storedTodo = localStorage.getItem('todo')
-// const initialState = storedTodo ?
-// JSON.parse(storedTodo) : {todoItems:[]}
+import {initialState} from '../resources.js'
 
 const todoSlice = createSlice({
   name: 'todo',
-  initialState: { todoItems: [], selectedCount: 0 },
+  initialState: { todoItems: initialState },
   reducers: {
     addTodo: (state, actions) => {
       const item = actions.payload;

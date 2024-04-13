@@ -1,0 +1,27 @@
+{
+  "app": "Todos",
+  "task_heading": "My Tasks",
+  "empty_tasks": {
+    "line1": "No Tasks",
+    "line2": "Oops! Looks like there are no tasks added yet.",
+    "line3": "Start by clicking + icon below."
+  },
+  "meme_heading": "Here is a meme for you!",
+  "generate_meme": "Generate Meme",
+  "create_task_heading": "Create Task",
+  "task_name": "Task Name",
+  "description": "Description",
+  "due_date": "Due Date",
+  "priority": "Priority",
+  "low": "Low",
+  "medium": "Medium",
+  "high": "High",
+  "add": "Add",
+  "close": "Close",
+  "confirm": "Confirm",
+  "are_you_sure": "Are you sure?",
+  "click_confirm": "Click confirm to delete the item.",
+  "due_on": "Due on:",
+  "save": "Save",
+  "cancel": "Cancel"
+}

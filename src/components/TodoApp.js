@@ -12,12 +12,21 @@ const TodoApp = () => {
   const dispatch = useDispatch();
   const todoList = useSelector((state) => state.todo.todoItems);
 
+  useEffect(
+    () => localStorage.setItem('todo', JSON.stringify(todoList)),
+    [todoList]
+  );
+
+  useEffect(() => {
+    fetchImageMeme();
+  }, []);
+
+  const { t } = useTranslation();
+
   const [toggleView, setViewState] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [memeImage, setMemeImage] = useState('');
-
-  const { t } = useTranslation();
 
   const fetchImageMeme = async () => {
     const options = {
@@ -28,6 +37,7 @@ const TodoApp = () => {
         'X-RapidAPI-Host': 'programming-memes-images.p.rapidapi.com',
       },
     };
+    
     setIsLoading(true);
     const response = await axios.request(options);
     const randomNumber = Math.floor(Math.random() * 11);
@@ -36,10 +46,6 @@ const TodoApp = () => {
     setMemeImage(memeObject.image);
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    fetchImageMeme();
-  }, []);
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -61,9 +67,7 @@ const TodoApp = () => {
       <div className="empty-task-container">
         <h3>{t('empty_tasks.line1')}</h3>
         <p>{t('empty_tasks.line2')}</p>
-        <p>
-        {t('empty_tasks.line3')}
-        </p>
+        <p>{t('empty_tasks.line3')}</p>
         <h3>{t('meme_heading')}</h3>
         <div className="meme-card">
           {isLoading ? (
@@ -88,9 +92,7 @@ const TodoApp = () => {
   const FormModal = () => (
     <div className={showHideClassName}>
       <div className="modal-main">
-        <h1 className="create-task-heading">
-          {t('create_task_heading')}
-        </h1>
+        <h1 className="create-task-heading">{t('create_task_heading')}</h1>
         <TodoForm handleCloseModal={handleCloseModal} />
       </div>
     </div>
@@ -98,12 +100,10 @@ const TodoApp = () => {
 
   return (
     <div className="todos-bg-container">
-      <LanguageButtons/>
+      <LanguageButtons />
       <h1 className="todos-heading">{t('app')}</h1>
       <div className="d-flex justify-content-between">
-        <h1 className="todo-items-heading">
-          {t('task_heading')}
-        </h1>
+        <h1 className="todo-items-heading">{t('task_heading')}</h1>
         {todoList.length > 0 ? (
           <div className="d-flex">
             <button
